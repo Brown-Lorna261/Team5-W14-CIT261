@@ -1,0 +1,47 @@
+<!DOCTYPE HTML> 
+<html lang="en-us"> 
+<head> 
+<meta charset="utf-8"> 
+<title>Instructions Page</title> 
+<script type="text/javascript"> 
+
+/*// Your JavaScript function belongs here. 
+function computeSize() {
+	var adults = parseInt(document.getElementById("adults").value);
+	var children = parseInt(document.getElementById("children").value);
+	var infants = parseInt(document.getElementById("infants").value);
+	var basic = parseInt(document.getElementById("basic").value);
+	var deluxe = parseInt(document.getElementById("deluxe").value);
+	var color = parseInt(document.getElementById("color").value);
+	var familySize = adults + (children * 0.8) + (infants * 0.3) + deluxe + basic;
+	
+	document.getElementById("size").innerHTML = familySize;
+}
+*/
+</script> 
+</head> 
+
+<body> 
+<h1>Instructions</h1>
+<p>The Food Foraging Fiesta! will help you keep</p>
+<p>track of your food storage inventory, and lest </p>
+<p>you know what you should add.</p><br>
+
+<p>1. Set up your preferences</p>
+<p>2. Enter your current inventory</p>
+<p>3. Use suggested shopping list to purchase </p>
+<p>needed items.</p>
+<p>4. Add items to inventory in the store or </p>
+<p>when stocking up.</p>
+<p>5. Remove items from inventory as they are used.</p><br>
+
+<p>• The current inventory can be viewed.</p>
+<p>• The recommended inventory can be </p>
+<p>adapted for your family.</p>
+<p>• The type of units can be selected per item.</p>
+<p>• Deluxe Storage includes spices and other </p>
+<p>items to improve meals.</p>
+<p>• Basic Storage is food necessary for survival.</p>
+<p>• Selecting “Infants” will add diapers, etc.</p>
+</body> 
+</html>
