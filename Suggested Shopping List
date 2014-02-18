@@ -1,0 +1,24 @@
+<!DOCTYPE HTML> 
+<html lang="en-us"> 
+<head> 
+<meta charset="utf-8"> 
+<title>Suggested Shopping List Screen</title> 
+<script type="text/javascript"> 
+function insertShoppingData() {
+// THis function will hopefully be able to add data from the other functions.
+
+	}
+</script> 
+</head> 
+
+<body> 
+<h1>Suggested Shopping List</h1><br>
+
+<div>
+	Item <div id="item2"></div> 
+	
+	Quantity <div id="quantity"></div> 
+</div>
+
+</body> 
+</html>
