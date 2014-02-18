@@ -1,0 +1,28 @@
+<!DOCTYPE HTML> 
+<html lang="en-us"> 
+<head> 
+<meta charset="utf-8"> 
+<title>Log In Page</title> 
+<script type="text/javascript"> 
+function insertCatData() {
+	var inventoryCat = parseInt(document.getElementById("inventoryCat").value);
+	}
+</script> 
+</head> 
+
+<body> 
+<h1>Inventory</h1><br>
+<div> 
+	<p>Select unit size from the drop down menu</p>
+    Inventory Category <input type="text" id="inventoryCat"><br> 
+</div> 
+<div>
+	Item <div id="item"></div> 
+	Unit Size(bottle, #10 can, pounds, box, jar) <div id="unitSize"></div> 
+	On hand <div id="onHand"></div>
+	Recommended <div id="recommended"></div>
+	Need <div id="need"></div> 
+</div>
+
+</body> 
+</html>
