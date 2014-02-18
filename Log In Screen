@@ -1,0 +1,31 @@
+<!DOCTYPE HTML> 
+<html lang="en-us"> 
+<head> 
+<meta charset="utf-8"> 
+<title>Log In Page</title> 
+<script type="text/javascript"> 
+function computeSize() {
+	var email = parseInt(document.getElementById("email").value);
+	var pWord1 = parseInt(document.getElementById("password1").value);
+	var pWord2 = parseInt(document.getElementById("password2").value);
+	var emailLog = parseInt(document.getElementById("emaillog").value);
+	var pWordLog = parseInt(document.getElementById("passwordlog").value);
+	}
+</script> 
+</head> 
+
+<body> 
+<h1>Food Foraging Fiesta!</h1>
+<h2>Food Storage Inventory Control</h2><br><br>
+<div> 
+	<p>Create Account</p>
+    Email: <input type="text" id="email"><br> 
+    Password:<input type="text" id="password1"><br>
+    Password:<input type="text" id="password2"><br><br>
+
+	<p>Log In</p>
+	Email:<input type="text" id="emaillog">
+    Password:<input type="text" id="passwordlog"><br><br>
+</div> 
+</body> 
+</html>
