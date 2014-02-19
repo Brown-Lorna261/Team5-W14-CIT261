@@ -1,1 +1,1 @@
-<div class="header">Home | Options | Inventory | Shopping | Help</div>
+<div class="header"><a href="/">Home</a> | <a href="options.php">Options</a> | <a href="inventory.php">Inventory</a> | <a href="shopping.php">Shopping</a> | <a href="instructions.php">Help</a></div>
