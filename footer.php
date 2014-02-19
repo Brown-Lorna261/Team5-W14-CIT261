@@ -1,0 +1,1 @@
+<div class="footer"><a href="#">LDS Provident Living</a> | <a href="#">Thrive</a> | <a href="#">Emergency Essentials</a></div>

@@ -42,9 +42,6 @@ function computeSize() {
 
     Size of Family <div id="size"></div> 
 </div> 
-<p>Links:<br>
-LDS Provident Living<br>
-Thrive<br>
-Emergency Essentials<p/><br>
+<?php include "footer.php"; ?> 
 </body> 
 </html>
