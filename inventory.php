@@ -3,11 +3,16 @@
 <head> 
 <meta charset="utf-8"> 
 <title>Inventory Screen</title> 
+<link href="styles.css" rel="stylesheet" type="text/css">
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head> 
 
 <body> 
-<?php include "header.php"; ?> 
+<div id="wrapper">
+
+<?php include "header.php"; ?>
+<div class="content"> 
 <h1>Inventory</h1>
 <p>Inventory category: 
   <select name="select" id="select">
@@ -20,78 +25,29 @@
     <option value="Toothpaste">Toothpaste</option>
   </select>
 </p>
-<table width="100%" border="1" cellspacing="2" cellpadding="2">
+<table width="100%" border="1" cellspacing="2" cellpadding="4">
   <tr>
-    <th width="20%" scope="col">Item Name</th>
-    <th width="20%" scope="col">Unit Size</th>
-    <th width="20%" scope="col">Items on Hand</th>
-    <th width="20%" scope="col">Recommended</th>
-    <th width="20%" scope="col">Needed</th>
-  </tr>
+    <th width="1%" align="left" nowrap="nowrap" scope="row">Item Name</th>
+    <td>&nbsp;</td>
+    </tr>
   <tr>
+    <th align="left" nowrap="nowrap" scope="row">Unit Size</th>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
+    </tr>
   <tr>
+    <th align="left" nowrap="nowrap" scope="row">Items on Hand</th>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
+    </tr>
   <tr>
+    <th align="left" nowrap="nowrap" scope="row">Recommended</th>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
+    </tr>
   <tr>
+    <th align="left" nowrap="nowrap" scope="row">Needed</th>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-</table>
-<?php include "footer.php"; ?> 
+    </tr>
+  </table>
+</div><?php include "footer.php"; ?> 
+</div>
 </body> 
 </html>

@@ -1,1 +1,6 @@
-<div class="footer"><a href="#">LDS Provident Living</a> | <a href="#">Thrive</a> | <a href="#">Emergency Essentials</a></div>
+<div id="access">
+<div class="menu-header">
+	<ul id="menu-menu" class="menu">
+    <li><a href="#">LDS Prov. Living</a></li>
+    <li><a href="#">Thrive</a></li>
+    <li><a href="#">Emergency Essentials</a></li></ul></div></div>
