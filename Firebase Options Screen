@@ -1,0 +1,121 @@
+<!DOCTYPE HTML> 
+<html lang="en-us"> 
+<head> 
+<meta charset="utf-8"> 
+<title>Options Screen</title> 
+
+</head> 
+
+<body> 
+<h1>Options</h1>
+<p>Select number of persons to feed:</p>
+
+<form id="optionInputs"> 
+    <label>Adults 
+		<input type="text" name="adults">
+	</label><br> 
+    <label>Children 
+		<input type="text" name="children">
+	</label><br>
+    <label>Number of Infants 
+		<input type="text" name="infants">
+	</label><br><br>
+
+    <label># Months of Storage 
+		<input type="text" name="months">
+	</label><br><br>
+	
+    <label>Basic Storage 
+		<input type="text" name="basic">
+	</label><br>
+	<label>Deluxe Storage 
+		<input type="text" name="deluxe">
+	</label><br>
+	
+    <label>Select color scheme: 
+		<input type="text" name="color"><br><br>
+	</label>
+    <label>Size of Family 
+		<input name="sizeOfFamily">
+	</label>
+	<a href="#" id="submitLink">Update Your Information</a>
+	<p>Edit food lists for allergies or preferences<p>
+</form> 
+<p>Links:<br>
+LDS Provident Living<br>
+Thrive<br>
+Emergency Essentials<p/><br>
+
+<script type="text/javascript"> 
+// This is a trial run for a function that brother Checketts gave us.
+
+var postToFirebase = function(event){
+	event.preventDefault();
+	var user = {};
+	user.adults = document.getElementById("optionInputs").adults.value;
+	user.children = document.getElementById("optionInputs").children.value;
+	user.infants = document.getElementById("optionInputs").infants.value;
+	user.months = document.getElementById("optionInputs").months.value;
+	user.basic = document.getElementById("optionInputs").basic.value;
+	user.deluxe = document.getElementById("optionInputs").deluxe.value;
+	user.color = document.getElementById("optionInputs").color.value;
+	user.time = new Date();
+             
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://brilliant-fire-7921.firebaseio.com/foodtypes.json", true);
+	xhr.setRequestHeader("Content-Type", "application/json");
+             
+    xhr.onreadystatechange = function() {
+		console.log(xhr,xhr.readyState,xhr.status);
+        if (xhr.readyState == 4 && xhr.status == 200) {
+			var user = JSON.parse(xhr.responseText);
+            console.log(user);
+            document.getElementById("lookupId").value = user.name;
+        }
+    }
+             
+    xhr.send(JSON.stringify(user));
+    console.log('ajax',xhr);
+   
+}         
+
+var init = function() {
+document.getElementById('submitLink').addEventListener('click', postToFirebase);
+/*
+document.getElementById('adults').addEventListener('blur', 
+postToFirebase);
+document.getElementById('children').addEventListener('blur', 
+postToFirebase);
+document.getElementById('infants').addEventListener('blur', 
+postToFirebase);
+document.getElementById('months').addEventListener('blur', 
+postToFirebase);
+document.getElementById('basic').addEventListener('blur', 
+postToFirebase);
+document.getElementById('deluxe').addEventListener('blur', 
+postToFirebase);
+document.getElementById('color').addEventListener('blur', 
+postToFirebase);
+document.getElementById('sizeOfFamily').addEventListener('blur', 
+postToFirebase);  
+*/
+
+};
+
+// Your JavaScript function belongs here. 
+function computeSize() {
+	var adults = parseInt(document.getElementById("adults").value);
+	var children = parseInt(document.getElementById("children").value);
+	var infants = parseInt(document.getElementById("infants").value);
+	var basic = parseInt(document.getElementById("basic").value);
+	var deluxe = parseInt(document.getElementById("deluxe").value);
+	var color = parseInt(document.getElementById("color").value);
+	var familySize = adults + (children * 0.8) + (infants * 0.3) + 
+deluxe + basic;
+	
+	document.getElementById("sizeOfFamily").innerHTML = familySize;
+}
+
+</script> 
+</body> 
+</html>
