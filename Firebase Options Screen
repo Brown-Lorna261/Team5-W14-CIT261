@@ -3,7 +3,7 @@
 <head> 
 <meta charset="utf-8"> 
 <title>Options Screen</title> 
-
+<script src="https://foodforagingfiesta.firebaseIO.com/v0/firebase.js"></script>
 </head> 
 
 <body> 
@@ -62,7 +62,7 @@ var postToFirebase = function(event){
 	user.time = new Date();
              
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://brilliant-fire-7921.firebaseio.com/foodtypes.json", true);
+    xhr.open("POST", "https://foodforagingfiesta.firebaseIO.com/v0/firebase.js", true);
 	xhr.setRequestHeader("Content-Type", "application/json");
              
     xhr.onreadystatechange = function() {
@@ -109,7 +109,7 @@ function computeSize() {
 	var infants = parseInt(document.getElementById("infants").value);
 	var basic = parseInt(document.getElementById("basic").value);
 	var deluxe = parseInt(document.getElementById("deluxe").value);
-	var color = parseInt(document.getElementById("color").value);
+	var color = document.getElementById("color").value;
 	var familySize = adults + (children * 0.8) + (infants * 0.3) + 
 deluxe + basic;
 	
