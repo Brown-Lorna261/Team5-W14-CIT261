@@ -1,12 +1,18 @@
 <!DOCTYPE HTML> 
 <html lang="en-us"> 
 <head> 
-<meta charset="utf-8"> 
+<meta charset="UTF-8"> 
 <title>Options Screen</title> 
-<script src="https://foodforagingfiesta.firebaseIO.com/v0/firebase.js"></script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<link href="styles.css" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=device-width, 
+initial-scale=1">
 </head> 
 
 <body> 
+<div id="wrapper">
+
+<div class="content"> 
 <h1>Options</h1>
 <p>Select number of persons to feed:</p>
 
@@ -41,13 +47,38 @@
 	<a href="#" id="submitLink">Update Your Information</a>
 	<p>Edit food lists for allergies or preferences<p>
 </form> 
-<p>Links:<br>
-LDS Provident Living<br>
-Thrive<br>
-Emergency Essentials<p/><br>
 
+</div>
+
+<div id="output"></div>
+
+<h2>Verify User Inputs</h2><a href="#" id="lookupUserDetails"></a>
+    <ul id="userDetails"></ul>
+
+<input id="lookupId" /><a href="#" id="getLink">Get from Firebase</a>
+
+</div>
 <script type="text/javascript"> 
 // This is a trial run for a function that brother Checketts gave us.
+
+var lookupUserDetails = function(){
+	event.preventDefault();
+           
+	var request = new XMLHttpRequest();
+	request.open("GET", "https://foodforagingfiesta.firebaseio.com/options.j
+son");
+	request.send(null);
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			var userInputs = JSON.parse(request.responseText);	console.log(optionInputs);
+			var outputList = document.getElementById('userDetails');
+               
+			for(key in userDetails){
+				var liElement =  document.createElement('li');liElement.textContent = userDetails[key].name;outputList.appendChild(liElement);
+			}
+        }
+    }
+};
 
 var postToFirebase = function(event){
 	event.preventDefault();
@@ -62,8 +93,8 @@ var postToFirebase = function(event){
 	user.time = new Date();
              
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://foodforagingfiesta.firebaseIO.com/v0/firebase.js", true);
-	xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.open("POST", "https://foodforagingfiesta.firebaseio.com/options.json", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
              
     xhr.onreadystatechange = function() {
 		console.log(xhr,xhr.readyState,xhr.status);
@@ -76,11 +107,61 @@ var postToFirebase = function(event){
              
     xhr.send(JSON.stringify(user));
     console.log('ajax',xhr);
-   
 }         
 
+var putToFirebase = function(event) {
+	event.preventDefault();
+	var userEntry = {};
+	userEntry.adult = document.getElementById("optionInputs").adult.value;
+    userEntry.children = document.getElementById("optionInputs").children.value;
+	userEntry.infants = document.getElementById("optionInputs").infants.value;
+	userEntry.months = document.getElementById("optionInputs").months.value;
+	userEntry.basic = document.getElementById("optionInputs").basic.value;
+	userEntry.deluxe = document.getElementById("optionInputs").deluxe.value;
+	userEntry.color = document.getElementById("optionInputs").color.value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", "https://foodforagingfiesta.firebaseio.com/options.json", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(userEntry));
+}
+
+var getFromFirebase = function(event) {
+	event.preventDefault();
+            
+	var id = document.getElementById("lookupId").value;
+	var request = new XMLHttpRequest();
+	request.open("GET", "https://foodforagingfiesta.firebaseio.com/options.json"+id+".json");
+	request.send(null);
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			console.log(request.responseText);
+			var userEntry = JSON.parse(request.responseText);
+			var output = document.getElementById("output");
+			output.textContent = userEntry.adults + " - " + userEntry.children + " - " + userEntry.infants + " - " + userEntry.months + " - " + userEntry.basic + " - " + userEntry.deluxe + " - " + userEntry.color;
+		}
+	}
+}
+
+var deleteFromFirebase = function(event) {
+	event.preventDefault();
+	var request = new XMLHttpRequest();
+	request.open("DELETE", "https://foodforagingfiesta.firebaseio.com/options.json");
+	request.send(null);
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 204) {
+			var output = document.getElementById("output");
+			output.textContent = "";
+		}
+	}
+}
+
+
 var init = function() {
-document.getElementById('submitLink').addEventListener('click', postToFirebase);
+
+
+document.getElementById('submitLink').addEventListener('click', 
+postToFirebase);
 /*
 document.getElementById('adults').addEventListener('blur', 
 postToFirebase);
@@ -104,16 +185,22 @@ postToFirebase);
 
 // Your JavaScript function belongs here. 
 function computeSize() {
-	var adults = parseInt(document.getElementById("adults").value);
-	var children = parseInt(document.getElementById("children").value);
-	var infants = parseInt(document.getElementById("infants").value);
+	var adults = parseInt(document.getElementById("adults").
+value);
+	var children = parseInt(document.getElementById("children").
+value);
+	var infants = parseInt(document.getElementById("infants").
+value);
 	var basic = parseInt(document.getElementById("basic").value);
-	var deluxe = parseInt(document.getElementById("deluxe").value);
+	var deluxe = parseInt(document.getElementById("deluxe").
+value);
 	var color = document.getElementById("color").value;
-	var familySize = adults + (children * 0.8) + (infants * 0.3) + 
+	var familySize = adults + (children * 0.8) + (infants * 0.3)
+ + 
 deluxe + basic;
 	
-	document.getElementById("sizeOfFamily").innerHTML = familySize;
+	document.getElementById("sizeOfFamily").innerHTML = 
+familySize;
 }
 
 </script> 
