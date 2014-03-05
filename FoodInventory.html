@@ -34,7 +34,7 @@
     <h2>All Unit Types</h2><a href="#" id="lookupUnitType">Lookup Unit Types</a>
     <ul id="unitTypes"></ul>
     
-    <h2>All Recommended Amounts</h2><a href="#" id="lookupLink">Lookup Recommended Amounts</a>
+    <h2>All Recommended Amounts</h2><a href="#" id="lookupRecommendation">Lookup Recommended Amounts</a>
     <ul id="RecommendedAmtList"></ul>
 
     <script>
@@ -76,12 +76,12 @@
                 console.log(xhr,xhr.readyState,xhr.status);
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     var foodEntry = JSON.parse(xhr.responseText);
-                    console.log(FoodItems);
+                    console.log(foodEntry);
                     document.getElementById("lookupId").value = foodEntry.foodItem;
                 }
             }
             
-            xhr.send(JSON.stringify(foodEntry));
+            xhr.send(JSON.stringify(food));
             console.log('ajax',xhr);
             
             
@@ -121,7 +121,7 @@
         var deleteFromFirebase = function(event) {
             event.preventDefault();
             var request = new XMLHttpRequest();
-            request.open("DELETE", "https://foodforagingfiesta.firebaseio.com/foodItems.json"");
+            request.open("DELETE", "https://foodforagingfiesta.firebaseio.com/foodItems.json");
             request.send(null);
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 204) {
@@ -132,7 +132,7 @@
         }
 
         var init = function() {
-            document.getElementById('lookupLink').addEventListener('click', lookupFoodItems);
+            document.getElementById('lookupRecommendation').addEventListener('click', lookupFoodItems);
             document.getElementById('submitLink').addEventListener('click', postToFirebase);
             document.getElementById('getLink').addEventListener('click', getFromFirebase);
             
