@@ -185,22 +185,16 @@ postToFirebase);
 
 // Your JavaScript function belongs here. 
 function computeSize() {
-	var adults = parseInt(document.getElementById("adults").
-value);
-	var children = parseInt(document.getElementById("children").
-value);
-	var infants = parseInt(document.getElementById("infants").
-value);
+	var adults = parseInt(document.getElementById("adults").value);
+	var children = parseInt(document.getElementById("children").value);
+	var infants = parseInt(document.getElementById("infants").value);
 	var basic = parseInt(document.getElementById("basic").value);
-	var deluxe = parseInt(document.getElementById("deluxe").
-value);
+	var deluxe = parseInt(document.getElementById("deluxe").value);
 	var color = document.getElementById("color").value;
-	var familySize = adults + (children * 0.8) + (infants * 0.3)
- + 
+	var familySize = adults + (children * 0.8) + (infants * 0.3) + 
 deluxe + basic;
 	
-	document.getElementById("sizeOfFamily").innerHTML = 
-familySize;
+	document.getElementById("sizeOfFamily").innerHTML = familySize;
 }
 
 </script> 
