@@ -59,7 +59,7 @@ text-align:center;
 }
 #access .menu-header,
 div.menu {
-	font-size: 15px;
+	font-size: 14px;
 }
 #access .menu-header ul,
 div.menu ul {
@@ -74,8 +74,8 @@ div.menu li {
 #access a {
 	color: #fff;
 	display: block;
-	line-height: 28px;
-	padding: 0 8px;
+	line-height: 34px;
+	padding: 0 7px;
 	text-decoration: none;
 	background-color:#E99F06;
 }
@@ -139,4 +139,5 @@ div.menu li {
 }
 .content {
 	padding: 0 20px;
+	margin:0 auto;
 }
