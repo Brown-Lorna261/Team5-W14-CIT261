@@ -1,0 +1,138 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+    <h2>Insert form</h2>
+    <form id="nameForm">
+        <label>Name:
+            <input name="name" />
+        </label>
+        <label>Age:
+            <input name="age" />
+        </label>
+        
+        <a href="#" id="submitLink">Save</a>
+    </form>
+
+
+    <h2>Fetch form</h2>
+    <input id="lookupId" />
+    <a href="#" id="getLink">Get from Firebase</a>
+    <div id="output"></div>
+    
+    <h2>List users</h2><a href="#" id="lookupUsers"></a>
+    <ul id="userList"></ul>
+    
+    
+    <h2>All Food Types</h2><a href="#" id="lookupLink">Lookup Food Types</a>
+    <ul id="foodTypes"></ul>
+
+    <script>
+        var lookupFoodTypes = function(){
+            event.preventDefault();
+            
+            var request = new XMLHttpRequest();
+            request.open("GET", "https://brilliant-fire-7921.firebaseio.com/foodtypes.json");
+            request.send(null);
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    
+                    var foodTypes = JSON.parse(request.responseText);
+                    console.log(foodTypes);
+                    
+                    var outputList = document.getElementById('foodTypes');
+                    
+                    for(key in foodTypes){
+                        var liElement =  document.createElement('li');
+                        liElement.textContent = foodTypes[key].name;
+                        outputList.appendChild(liElement);
+                    }
+                }
+            }
+        };
+        
+        var postToFirebase = function(event){
+            event.preventDefault();
+            var person = {};
+            person.name = document.getElementById("nameForm").name.value;
+            person.age = document.getElementById("nameForm").age.value;
+            person.time = new Date();
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "https://brilliant-fire-7921.firebaseio.com/foodtypes.json", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
+            xhr.onreadystatechange = function() {
+                console.log(xhr,xhr.readyState,xhr.status);
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var person = JSON.parse(xhr.responseText);
+                    console.log(person);
+                    document.getElementById("lookupId").value = person.name;
+                }
+            }
+            
+            xhr.send(JSON.stringify(person));
+            console.log('ajax',xhr);
+            
+            
+        }
+        
+        var putToFirebase = function(event) {
+            event.preventDefault();
+            var person = {};
+            person.name = document.getElementById("nameForm").name.value;
+            person.age = document.getElementById("nameForm").age.value;
+            person.time = new Date();
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("PUT", "https://brilliant-fire-7921.firebaseio.com/users/jack.json", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(person));
+        }
+
+        var getFromFirebase = function(event) {
+            event.preventDefault();
+            
+            var id = document.getElementById("lookupId").value;
+            
+            var request = new XMLHttpRequest();
+            request.open("GET", "https://brilliant-fire-7921.firebaseio.com/users/"+id+".json");
+            request.send(null);
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    console.log(request.responseText)
+                    var person = JSON.parse(request.responseText);
+                    var output = document.getElementById("output");
+                    output.textContent = person.name + " - " + person.age;
+                }
+            }
+        }
+
+        var deleteFromFirebase = function(event) {
+            event.preventDefault();
+            var request = new XMLHttpRequest();
+            request.open("DELETE", "https://brilliant-fire-7921.firebaseio.com/users/jack.json");
+            request.send(null);
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 204) {
+                    var output = document.getElementById("output");
+                    output.textContent = "";
+                }
+            }
+        }
+
+        var init = function() {
+            document.getElementById('lookupLink').addEventListener('click', lookupFoodTypes);
+            document.getElementById('submitLink').addEventListener('click', postToFirebase);
+            document.getElementById('getLink').addEventListener('click', getFromFirebase);
+            
+        };
+        document.addEventListener("DOMContentLoaded", init);
+    </script>
+</body>
+
+</html>
