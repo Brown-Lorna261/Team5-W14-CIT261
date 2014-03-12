@@ -1,0 +1,12 @@
+Less efficient:
+Get the data from Firebase
+Check for duplicates
+Merge duplicates (add them together or delete them both and create a new entry with them added)
+Save the cleaned up data
+Display to the user
+
+Better:
+User enters data
+Check if it already exists
+Add them together/Merge/Delete (however you like)
+Store on Firebase
