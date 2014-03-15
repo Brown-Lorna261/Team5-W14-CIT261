@@ -27,16 +27,20 @@ var FamilyOptions = {
 
 var UsrNam = doc.getEleById('username');
 
+var myData[];
+var whichRow;
+
 function SearchUser(UsrNam)
 {
  var MyUserName=UsrNam
  for(var i=0; i <= familyoptions.length; i++)
  {
  	if(FamilyOptions.FamilyData[i].UserName=MyUserName)
- 	 var myData[] = FamilyOptions.FamilyData[i].UserName;
+ 	 myData[] = FamilyOptions.FamilyData[i].UserName;
  }
 }
 
+FamilyOptions.FamilyData[whichRow].Adults = "3";
 /*************************************************/
 
 var JSONFood = { "foodList" : [ 
