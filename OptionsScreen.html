@@ -27,9 +27,23 @@
 <h2>Select number of persons to feed:</h2>
 
     <form id="optionsForm"> 
-        <label># Adults:<input type="text" id="adults"></label><br> 
-        <label># Children:<input type="text" id="children"></label><br>
-        <label># Infants:<input type="text" id="infants"></label><br>
+        <select name="Adults">
+  		<option value="1">1 Adult</option>
+  		<option value="2" selected="">2 Adults</option>
+  		<option value="3">3 Adults</option>
+		</select><br>
+		
+        <select name="Children">
+  		<option value="1">1 Child</option>
+  		<option value="2" selected="">2 Children</option>
+  		<option value="3">3 Children</option>
+	</select><br>
+	
+        <select name="Infant">
+  		<option value="1">1 Infant</option>
+  		<option value="2" selected="">2 Infants</option>
+  		<option value="3">3 Infants</option>
+</select><br>
 
         <label># Months of Storage: <input type="text" id="months"></label><br><br>
 
