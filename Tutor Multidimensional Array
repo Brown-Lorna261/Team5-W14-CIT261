@@ -1,0 +1,82 @@
+var JSONobject = { "myEmployees" :
+[  
+{ "name" : "fred", "age" : "42", "shoesize" : "11" },
+{ "name" : "sue", "age" : "24", "shoesize" : "8" }, <-- i=1
+
+],
+"MyBosses" : [{"Firstname" : "Jim". "Lastname" : "Kirk"}]
+
+};
+
+i=1
+JSONobject.myEmployees[i].name = "Bob";
+
+
+var FamilyOptionsData = { "userAdults" : [{"firstName" : "Bob", "LastName" : "Jones"}]}
+
+
+
+var FamilyOptions = { 
+ "FamilyData" : [
+{"UserName":"Jones1512","UserAdults":"2","UserChildren":"2","UserInfants":"0","NumberOfMonths":"12"},
+{"UserName":"Billy784","UserAdults":"1","UserChildren":"1","UserInfants":"0","NumberOfMonths":"12"}
+ ]
+};
+
+<input id="username">find my data</>
+
+var UsrNam = doc.getEleById('username');
+
+function SearchUser(UsrNam)
+{
+ var MyUserName=UsrNam
+ for(var i=0; i <= familyoptions.length; i++)
+ {
+ 	if(FamilyOptions.FamilyData[i].UserName=MyUserName)
+ 	 var myData[] = FamilyOptions.FamilyData[i].UserName;
+ }
+}
+
+/*************************************************/
+
+var JSONFood = { "foodList" : [ 
+{ },
+
+<select name="Adults" id='Adults'>
+<options value="2" selected>2 Adults</options>
+</select>
+
+function submitNumbers() {
+var adultsNumbers = document.getElementById('Adults');
+i=3;
+optionsData[i].NumberOfAdults = adultNumbers;
+
+};
+
+/****************************************************/
+
+ <script>
+  var lookupFamilySize =function(){
+  event.preventDefault();
+   
+  var request = new XMLHttpRequest();
+  request.open("GET", "https://foodforagingfiesta.firebaseio.com/options.json");
+  request.send(null);
+  request.onreadystatechange = function(){
+  if (request.readyState == 4 && request.status == 200){  
+  var adults = JSON.parse(request.responseText);
+  console.log(adults);
+   
+  / var children = JSON.parse(request.responseText);
+  console.log(children);
+  var infants = JSON.parse(request.responseText);
+  console.log(infants);
+  var month
+var months = JSON.parse(request.responseText);
+  console.log(months);
+  */
+   
+  var outputAdults = document.getElementById('adults');
+  }
+  }
+  };
