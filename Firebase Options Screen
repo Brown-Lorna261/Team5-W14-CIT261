@@ -1,202 +1,217 @@
 <!DOCTYPE HTML> 
 <html lang="en-us"> 
 <head> 
-<meta charset="UTF-8"> 
+<meta charset="utf-8"> 
+    <script src="https://cdn.firebase.com/v0/firebase.js"></script>0
 <title>Options Screen</title> 
-<script src="https://cdn.firebase.com/v0/firebase.js"></script>
-<link href="styles.css" rel="stylesheet" type="text/css">
-<meta name="viewport" content="width=device-width, 
-initial-scale=1">
-</head> 
-
-<body> 
-<div id="wrapper">
-
-<div class="content"> 
-<h1>Options</h1>
-<p>Select number of persons to feed:</p>
-
-<form id="optionInputs"> 
-    <label>Adults 
-		<input type="text" name="adults">
-	</label><br> 
-    <label>Children 
-		<input type="text" name="children">
-	</label><br>
-    <label>Number of Infants 
-		<input type="text" name="infants">
-	</label><br><br>
-
-    <label># Months of Storage 
-		<input type="text" name="months">
-	</label><br><br>
-	
-    <label>Basic Storage 
-		<input type="text" name="basic">
-	</label><br>
-	<label>Deluxe Storage 
-		<input type="text" name="deluxe">
-	</label><br>
-	
-    <label>Select color scheme: 
-		<input type="text" name="color"><br><br>
-	</label>
-    <label>Size of Family 
-		<input name="sizeOfFamily">
-	</label>
-	<a href="#" id="submitLink">Update Your Information</a>
-	<p>Edit food lists for allergies or preferences<p>
-</form> 
-
-</div>
-
-<div id="output"></div>
-
-<h2>Verify User Inputs</h2><a href="#" id="lookupUserDetails"></a>
-    <ul id="userDetails"></ul>
-
-<input id="lookupId" /><a href="#" id="getLink">Get from Firebase</a>
-
-</div>
 <script type="text/javascript"> 
-// This is a trial run for a function that brother Checketts gave us.
-
-var lookupUserDetails = function(){
-	event.preventDefault();
-           
-	var request = new XMLHttpRequest();
-	request.open("GET", "https://foodforagingfiesta.firebaseio.com/options.j
-son");
-	request.send(null);
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			var userInputs = JSON.parse(request.responseText);	console.log(optionInputs);
-			var outputList = document.getElementById('userDetails');
-               
-			for(key in userDetails){
-				var liElement =  document.createElement('li');liElement.textContent = userDetails[key].name;outputList.appendChild(liElement);
-			}
-        }
-    }
-};
-
-var postToFirebase = function(event){
-	event.preventDefault();
-	var user = {};
-	user.adults = document.getElementById("optionInputs").adults.value;
-	user.children = document.getElementById("optionInputs").children.value;
-	user.infants = document.getElementById("optionInputs").infants.value;
-	user.months = document.getElementById("optionInputs").months.value;
-	user.basic = document.getElementById("optionInputs").basic.value;
-	user.deluxe = document.getElementById("optionInputs").deluxe.value;
-	user.color = document.getElementById("optionInputs").color.value;
-	user.time = new Date();
-             
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://foodforagingfiesta.firebaseio.com/options.json", true);
-            xhr.setRequestHeader("Content-Type", "application/json");
-             
-    xhr.onreadystatechange = function() {
-		console.log(xhr,xhr.readyState,xhr.status);
-        if (xhr.readyState == 4 && xhr.status == 200) {
-			var user = JSON.parse(xhr.responseText);
-            console.log(user);
-            document.getElementById("lookupId").value = user.name;
-        }
-    }
-             
-    xhr.send(JSON.stringify(user));
-    console.log('ajax',xhr);
-}         
-
-var putToFirebase = function(event) {
-	event.preventDefault();
-	var userEntry = {};
-	userEntry.adult = document.getElementById("optionInputs").adult.value;
-    userEntry.children = document.getElementById("optionInputs").children.value;
-	userEntry.infants = document.getElementById("optionInputs").infants.value;
-	userEntry.months = document.getElementById("optionInputs").months.value;
-	userEntry.basic = document.getElementById("optionInputs").basic.value;
-	userEntry.deluxe = document.getElementById("optionInputs").deluxe.value;
-	userEntry.color = document.getElementById("optionInputs").color.value;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("PUT", "https://foodforagingfiesta.firebaseio.com/options.json", true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(JSON.stringify(userEntry));
-}
-
-var getFromFirebase = function(event) {
-	event.preventDefault();
-            
-	var id = document.getElementById("lookupId").value;
-	var request = new XMLHttpRequest();
-	request.open("GET", "https://foodforagingfiesta.firebaseio.com/options.json"+id+".json");
-	request.send(null);
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			console.log(request.responseText);
-			var userEntry = JSON.parse(request.responseText);
-			var output = document.getElementById("output");
-			output.textContent = userEntry.adults + " - " + userEntry.children + " - " + userEntry.infants + " - " + userEntry.months + " - " + userEntry.basic + " - " + userEntry.deluxe + " - " + userEntry.color;
-		}
-	}
-}
-
-var deleteFromFirebase = function(event) {
-	event.preventDefault();
-	var request = new XMLHttpRequest();
-	request.open("DELETE", "https://foodforagingfiesta.firebaseio.com/options.json");
-	request.send(null);
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 204) {
-			var output = document.getElementById("output");
-			output.textContent = "";
-		}
-	}
-}
-
-
-var init = function() {
-
-
-document.getElementById('submitLink').addEventListener('click', 
-postToFirebase);
-/*
-document.getElementById('adults').addEventListener('blur', 
-postToFirebase);
-document.getElementById('children').addEventListener('blur', 
-postToFirebase);
-document.getElementById('infants').addEventListener('blur', 
-postToFirebase);
-document.getElementById('months').addEventListener('blur', 
-postToFirebase);
-document.getElementById('basic').addEventListener('blur', 
-postToFirebase);
-document.getElementById('deluxe').addEventListener('blur', 
-postToFirebase);
-document.getElementById('color').addEventListener('blur', 
-postToFirebase);
-document.getElementById('sizeOfFamily').addEventListener('blur', 
-postToFirebase);  
-*/
-
-};
 
 // Your JavaScript function belongs here. 
-function computeSize() {
+/*function computeSize() {
 	var adults = parseInt(document.getElementById("adults").value);
 	var children = parseInt(document.getElementById("children").value);
 	var infants = parseInt(document.getElementById("infants").value);
 	var basic = parseInt(document.getElementById("basic").value);
 	var deluxe = parseInt(document.getElementById("deluxe").value);
-	var color = document.getElementById("color").value;
-	var familySize = adults + (children * 0.8) + (infants * 0.3) + 
-deluxe + basic;
-	
-	document.getElementById("sizeOfFamily").innerHTML = familySize;
-}
+	var color = parseInt(document.getElementById("color").value);
+	var familySize = adults + (children * 0.8) + (infants * 0.3) + deluxe + basic;
+
+	document.getElementById("size").innerHTML = familySize;
+}*/
 
 </script> 
+</head> 
+
+<body> 
+<h1>Options</h1>
+<h2>Select number of persons to feed:</h2>
+
+    <form id="optionsForm"> 
+        <label>Adults</label>
+		<select name="adults">
+			<option value="0" selected="">       </option>
+			<option value="1">1 Adult</option>
+			<option value="2">2 Adults</option>
+			<option value="3">3 Adults</option>
+		</select><br>
+		
+        <label>Children</label>
+        <select name="children">
+			<option value="0" selected="">       </option>
+			<option value="1">1 Child</option>
+			<option value="2">2 Children</option>
+			<option value="3">3 Children</option>
+		</select><br>
+		
+        <label>Infants</label>
+        <select name="infants">
+			<option value="0" selected="">       </option>
+			<option value="1">1 Infant</option>
+			<option value="2">2 Infants</option>
+			<option value="3">3 Infants</option>
+		</select><br>
+
+		<label>Months</label>
+		<select name="months">
+			<option value="0" selected="">       </option>
+			<option value="1">1 Month</option>
+			<option value="2">2 Months</option>
+			<option value="3">3 Months</option>
+			<option value="4">4 Months</option>
+			<option value="5">5 Months</option>
+			<option value="6">6 Months</option>
+			<option value="9">9 Months</option>
+			<option value="12">12 Months</option>
+		</select><br><br>
+		
+			<input type="radio" name="group1" value="1" onclick="radioFunction(this.value)">Basic Storage<br>
+			<input type="radio" name="group1" value="2" onclick="radioFunction(this.value)">Deluxe Storage<br>
+
+	<h2>Edit food lists for allergies or preferences</h2>
+
+		<label>Select a color scheme:</label>
+		<select name="color">
+			<option value="black">Black</option>
+			<option value="white" selected="">White</option>
+			<option value="green">Green</option>
+			<option value="blue">Blue</option>
+			<option value="red">Red</option>
+			<option value="purple">Purple</option>
+		</select><br><br>
+    
+        <a href="#" id="submitOptionsLink">Save Imputed Data</a>
+    </form>
+    <br><br>
+
+    
+    <h2>Fetch Form</h2>
+	<form>
+		<input id="lookupOptionsId" />
+		<a href="#" id="getOptionsLink">Get from Firebase</a>
+		<div id="output"></div>                     
+
+		<h3>Family Size</h3><a href="#" id="lookupFamilySize">Lookup Family Size</a>
+		<ul id="size"></ul>
+	</form>
+    
+    <script>
+var radioButton;
+var radioFunction = function(bOrD){
+	radioButton = bOrD;
+	}
+var lookupFamilySize = function(){
+    event.preventDefault();
+            
+    var request = new XMLHttpRequest();
+    request.open("GET", "https://foodforagingfiesta.firebaseio.com/options.json");
+    request.send(null);
+    request.onreadystatechange = function(){
+        if (request.readyState == 4 && request.status == 200){    
+			var userInputs = JSON.parse(request.responseText);
+			console.log(userInputs);
+			var outputList = document.getElementById('size');
+            
+			for (key in size){
+				var liElement = document.createElement('li');
+				liElement.textContent = size[key].name;
+				outputList.appendChild(liElement);
+			}
+		}
+    }
+};
+        
+var postToFirebase = function(event){
+    event.preventDefault();
+	
+    var family = {};
+    family.adults = document.getElementById("optionsForm").adults.value;
+	family.children = document.getElementById("optionsForm").children.value;
+	family.infants = document.getElementById("optionsForm").infants.value;
+	family.months = document.getElementById("optionsForm").months.value;
+	family.basicOrDeluxe = radioButton;
+	family.color = document.getElementById("optionsForm").color.value;
+            
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://foodforagingfiesta.firebaseio.com/options.json", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+           
+    xhr.onreadystatechange = function() {
+        console.log(xhr,xhr.readyState,xhr.status);
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var family = JSON.parse(xhr.responseText);
+            console.log(family);
+        }
+    }
+            
+    xhr.send(JSON.stringify(family));
+    console.log('ajax', xhr);
+  
+}
+        
+        
+var putToFirebase = function(event) {
+    event.preventDefault();
+    var family = {};
+    family.adults = document.getElementById("optionsForm").adults.value;
+	family.children = document.getElementById("optionsForm").children.value;
+	family.infants = document.getElementById("optionsForm").infants.value;
+	family.months = document.getElementById("optionsForm").months.value;
+	family.bOrD = radioButton;
+	family.color = document.getElementById("optionsForm").color.value;
+      
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", "https://foodforagingfiesta.firebaseio.com/options.json", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(family));
+}
+        
+var getFromFirebase = function(event) {
+	event.preventDefault();
+    
+	var id = document.getElementById("lookupOptionsId").value;
+            
+    var request = new XMLHttpRequest();
+    request.open("GET", "https://foodforagingfiesta.firebaseio.com/options.json"+id+".json");
+    request.send(null);
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            console.log(request.responseText)
+            var family = JSON.parse(request.responseText);
+            var output = document.getElementById("output");
+            output.textContent = family;
+        }
+    }
+};
+             
+              
+var deleteFromFirebase = function(event) {
+	event.preventDefault();
+	var request = new XMLHttpRequest();
+    request.open("DELETE", "https://foodforagingfiesta.firebaseio.com/options.json");
+    request.send(null);
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 204) {
+            var output = document.getElementById("output");
+            output.textContent = "";
+        }
+    }
+};
+
+var init = function() {
+    document.getElementById('lookupOptionsId').addEventListener('click', lookupFamilySize);
+	document.getElementById('submitOptionsLink').addEventListener('click', postToFirebase);
+    document.getElementById('getOptionsLink').addEventListener('click', getFromFirebase);
+           
+};
+
+document.addEventListener("DOMContentLoaded", init);
+	</script>
+    
+<h2>Resource Links:</h2>
+    <ul id="resource-links">
+        <li><a href="https://www.lds.org/topics/food-storage">LDS Provident Living</a></li>
+        <li><a href="http://www.thrivelife.com">Thrive</a></li>
+        <li><a href="http://beprepared.com">Emergency Essentials</a></li>
+    </ul>
 </body> 
 </html>
