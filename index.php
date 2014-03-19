@@ -11,7 +11,6 @@
 <title>Untitled Document</title>
 <link href="boilerplate.css" rel="stylesheet" type="text/css">
 <link href="style.css" rel="stylesheet" type="text/css">
-<link href="styles.css" rel="stylesheet" type="text/css">
 <!-- 
 To learn more about the conditional comments around the html tags at the top of the file:
 paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/

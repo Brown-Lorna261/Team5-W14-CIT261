@@ -3,7 +3,7 @@
 <head> 
 <meta charset="utf-8"> 
 <title>Inventory Screen</title> 
-<link href="styles.css" rel="stylesheet" type="text/css">
+<link href="style.css" rel="stylesheet" type="text/css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head> 
