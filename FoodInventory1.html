@@ -12,18 +12,18 @@
         <label>Food Item:</label>
             <select name="foodItem">
                 <option value="0" selected>     </option>
-                <option value="rice">Rice</option>
-                <option value="wheat">Wheat</option>
-                <option value="powderedMilk">Powdered Milk</option>
-                <option value="beans">Beans</option>
-                <option value="meat">Meat</option>
-                <option value="fruit">Fruit</option>
-                <option value="rolledOats">Rolled Oats</option>
-                <option value="sugar">Sugar</option>
-                <option value="pasta">Pasta</option>
-                <option value="corn">Corn</option>
-                <option value="vegetable">Vegetables</option>
-                <option value="dehydratedPotatoes">Dehydrated Potatoes</option>
+                <option value="Rice">Rice</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Powdered-Milk">Powdered Milk</option>
+                <option value="Beans">Beans</option>
+                <option value="Meat">Meat</option>
+                <option value="Fruit">Fruit</option>
+                <option value="Rolled-Oats">Rolled Oats</option>
+                <option value="Sugar">Sugar</option>
+                <option value="Pasta">Pasta</option>
+                <option value="Corn">Corn</option>
+                <option value="Vegetable">Vegetables</option>
+                <option value="Dehydrated-Potatoes">Dehydrated Potatoes</option>
             </select><br>
             
         <label>Unit Type:</label>
@@ -101,7 +101,7 @@
     <a href="#" id="getInventoryLink">Get from Firebase</a>
     <div id="output"></div>
     
-    <h2>List Food Items</h2><a href="#" id="lookupFoodItems"></a>
+    <h2>List Food Items</h2><a href="#" id="lookupFoodItems">Lookup Food Items</a>
     <ul id="foodItems"></ul>
     
     <h2>All Unit Types</h2><a href="#" id="lookupUnitType">Lookup Unit Types</a>
@@ -126,14 +126,14 @@
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 200) {
                     
-                    var foodItems = JSON.parse(request.responseText);
-                    console.log(foodItems);
+                    var foodInventory = JSON.parse(request.responseText);
+                    console.log(foodInventory);
                     
                     var outputList = document.getElementById('foodItems');
                     
-                    for(key in foodItems){
+                    for(key in foodInventory){
                         var liElement =  document.createElement('li');
-                        liElement.textContent = foodItems[key].name;
+                        liElement.textContent = foodInventory[key].foodItem;
                         outputList.appendChild(liElement);
                     }
                 }
@@ -186,7 +186,7 @@
         var getFromFirebase = function(event) {
             event.preventDefault();
             
-            var id = document.getElementById("lookupId").value;
+            var id = document.getElementById("lookupInventoryID").value;
             
             var request = new XMLHttpRequest();
             request.open("GET", "https://foodforagingfiesta.firebaseio.com/foodItems.json"+id+".json");
@@ -194,9 +194,9 @@
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 200) {
                     console.log(request.responseText)
-                    var foodEntry = JSON.parse(request.responseText);
+                    var foodOutput = JSON.parse(request.responseText);
                     var output = document.getElementById("output");
-                    output.textContent = foodEntry.foodItem + " - " + foodEntry.unitType + " - " + foodEntry.recommendedAmt;
+                    output.textContent = foodOutput[key].foodItem + " - " + foodOutput[key].unitType + " - " + foodOutput[key].recommendedAmt + " - " + foodOutput[key].amountAdded + " - " + foodOutput[key].amountUsed;
                 }
             }
         }
@@ -215,9 +215,10 @@
         }
 
         var init = function() {
-            document.getElementById('lookupRecommendation').addEventListener('click', lookupFoodItems);
+            document.getElementById('lookupFoodItems').addEventListener('click', lookupFoodItems);
             document.getElementById('submitInventoryLink').addEventListener('click', postToFirebase);
             document.getElementById('getInventoryLink').addEventListener('click', getFromFirebase);
+            document.getElementById('lookupUnitTypes').addEventListener
             
         };
         document.addEventListener("DOMContentLoaded", init);
