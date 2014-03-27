@@ -1,14 +1,12 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
-<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
-<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="">
-<!--<![endif]-->
-<head>
-<meta charset="UTF-8">
+<!DOCTYPE HTML> 
+<html lang="en-us"> 
+<head> 
+<meta charset="UTF-8"> 
+<title>Instructions</title> 
+
+<link href="style.css" rel="stylesheet" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Food Foraging Fiesta</title>
+
 <link href="boilerplate.css" rel="stylesheet" type="text/css">
 <link href="style.css" rel="stylesheet" type="text/css">
 <!-- 
@@ -27,16 +25,22 @@ Do the following if you're using your customized build of modernizr (http://www.
 <script src="respond.min.js"></script>
 <script src="https://cdn.firebase.com/v0/firebase.js"></script>
 <script type="text/javascript" src="main.js"></script>
-</head>
-<body>
+    
+</head> 
+
+<body> 
 <div class="gridContainer clearfix">
   <div id="div1" class="fluid">
 <?php include "header.php"; ?>
 <div class="content"> 
-   <h1>Welcome: Login</h1>
-   
+<h1>Instructions</h1>
+<p>Instructions here</p>
+
+  
+  
+
 </div><?php include "footer.php"; ?> 
  </div>
 </div>
-</body>
+</body> 
 </html>

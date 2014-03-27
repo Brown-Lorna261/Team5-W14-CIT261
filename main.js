@@ -1,26 +1,123 @@
-<!DOCTYPE HTML> 
-<html lang="en-us"> 
-<head> 
-<meta charset="utf-8"> 
-<title>Inventory Screen</title> 
-<link href="style.css" rel="stylesheet" type="text/css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="respond.min.js"></script>
-<script src="https://cdn.firebase.com/v0/firebase.js"></script>
-<script type="text/javascript" src="main.js"></script>
-</head> 
+// JavaScript Document
 
-<body> 
-<div class="gridContainer clearfix">
-  <div id="div1" class="fluid">
-<?php include "header.php"; ?>
-<div class="content">  
-<h1>Shopping</h1>
-<a href="#" id="lookupFoodItems">Lookup Food Items</a>
-    <ul id="foodItems"></ul>
+
+//------- STart options JS ------->
+var radioButton;
+var radioFunction = function(bOrD){
+	radioButton = bOrD;
+	}
+var lookupFamilySize = function(){
+    event.preventDefault();
+            
+    var request = new XMLHttpRequest();
+    request.open("GET", "https://foodforagingfiesta.firebaseio.com/options.json");
+    request.send(null);
+    request.onreadystatechange = function(){
+        if (request.readyState == 4 && request.status == 200){    
+			var userInputs = JSON.parse(request.responseText);
+			console.log(userInputs);
+			var outputList = document.getElementById('size');
+            
+			for (key in size){
+				var liElement = document.createElement('li');
+				liElement.textContent = size[key].name;
+				outputList.appendChild(liElement);
+			}
+		}
+    }
+};
+        
+var postToFirebase = function(event){
+    event.preventDefault();
+
+    var family = {};
+    family.adults = document.getElementById("optionsForm").adults.value;
+	family.children = document.getElementById("optionsForm").children.value;
+	family.infants = document.getElementById("optionsForm").infants.value;
+	family.months = document.getElementById("optionsForm").months.value;
+	family.basicOrDeluxe = radioButton;
+	family.color = document.getElementById("optionsForm").color.value;
+            
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://foodforagingfiesta.firebaseio.com/options.json", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+           
+    xhr.onreadystatechange = function() {
+        console.log(xhr,xhr.readyState,xhr.status);
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var family = JSON.parse(xhr.responseText);
+            console.log(family);
+        }
+    }
+            
+    xhr.send(JSON.stringify(family));
+    console.log('ajax', xhr);
+  
+}
+        
+        
+var putToFirebase = function(event) {
+    event.preventDefault();
+    var family = {};
+    family.adults = document.getElementById("optionsForm").adults.value;
+	family.children = document.getElementById("optionsForm").children.value;
+	family.infants = document.getElementById("optionsForm").infants.value;
+	family.months = document.getElementById("optionsForm").months.value;
+	family.bOrD = radioButton;
+	family.color = document.getElementById("optionsForm").color.value;
+      
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", "https://foodforagingfiesta.firebaseio.com/options.json", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify(family));
+}
+        
+var getFromFirebase = function(event) {
+	event.preventDefault();
     
- <script>
-        var lookupFoodItems = function(){
+	var id = document.getElementById("lookupOptionsId").value;
+            
+    var request = new XMLHttpRequest();
+    request.open("GET", "https://foodforagingfiesta.firebaseio.com/options.json"+id+".json");
+    request.send(null);
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            console.log(request.responseText)
+            var family = JSON.parse(request.responseText);
+            var output = document.getElementById("output");
+            output.textContent = family;
+        }
+    }
+};
+             
+              
+var deleteFromFirebase = function(event) {
+	event.preventDefault();
+	var request = new XMLHttpRequest();
+    request.open("DELETE", "https://foodforagingfiesta.firebaseio.com/options.json");
+    request.send(null);
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 204) {
+            var output = document.getElementById("output");
+            output.textContent = "";
+        }
+    }
+};
+
+var init = function() {
+    document.getElementById('lookupOptionsId').addEventListener('click', lookupFamilySize);
+	document.getElementById('submitOptionsLink').addEventListener('click', postToFirebase);
+    document.getElementById('getOptionsLink').addEventListener('click', getFromFirebase);
+           
+};
+
+document.addEventListener("DOMContentLoaded", init);
+
+//-------END options JS------->
+
+//------- Inventory JS Start---->
+
+var lookupFoodItems = function(){
             event.preventDefault();
             
             var request = new XMLHttpRequest();
@@ -125,10 +222,5 @@
             
         };
         document.addEventListener("DOMContentLoaded", init);
-    </script>
-    
-</div><?php include "footer.php"; ?> 
- </div>
-</div>
-</body> 
-</html>
+		
+//-----end inventory JS --------->

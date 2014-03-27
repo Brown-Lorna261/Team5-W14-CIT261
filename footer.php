@@ -1,6 +1,8 @@
 <div id="footer">
-<div class="menu-header">
-	<ul id="menu-menu" class="menu">
-    <li><a href="#">LDS Prov. Living</a></li>
-    <li><a href="#">Thrive</a></li>
-    <li><a href="#">Emergency Essentials</a></li></ul></div></div>
+  <h2>Resource Links:</h2>
+  <ul id="resource-links">
+    <li><a href="https://www.lds.org/topics/food-storage">LDS Provident Living</a></li>
+    <li><a href="http://www.thrivelife.com">Thrive</a></li>
+    <li><a href="http://beprepared.com">Emergency Essentials</a></li>
+  </ul>
+</div>
