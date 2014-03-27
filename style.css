@@ -69,7 +69,7 @@ body,td,th {
 	color: #333333;
 }
 body {
-	background-color: #efefef;
+	background-color: #ffffff;
 	margin:0px;
 }
 h1 {
@@ -110,10 +110,13 @@ a:hover {
 
 	display: block;
 	margin: 0 auto;
-	width: 100%;
-	height:35px;
+	width:100px;
+	height:28px;
 	z-index:999;
-text-align:center;
+/*border:1px solid #11FB0B;*/
+position:absolute;
+top:64px; 
+left:10px;
 }
 #access ul{
 	display:inline-block;
@@ -133,47 +136,45 @@ div.menu li {
 	position: relative;
 }
 #access a {
-	color: #fff;
+	color:#404366;
 	display: block;
-	line-height: 34px;
+	line-height: 28px;
 	padding: 0 7px;
 	text-decoration: none;
-	background-color:#E99F06;
+	
 }
 #access ul ul {
-	box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
-	-moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
-	-webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
 	display: none;
 	position: absolute;
-	top: 48px;
+	top: 28px;
 	left: 0;
 	float: left;
-	width: 230px;
+	width: 90px;
 	z-index: 99999;
 }
 #access ul ul li {
-	min-width: 230px;
+	min-width: 90px;
 }
 #access ul ul ul {
 	left: 100%;
 	top: 0;
 }
 #access ul ul a {
-	background: #442717;
+	background: #404366;
 	line-height: 1em;
 	padding: 10px;
-	width: 210px;
+	width: 90px;
 	height: auto;
 	text-align:left;
 	font-size:15px;
+	color: #fff;
 }
 #access li:hover > a {
 		color: #fff;
-		background-color:#E5B903;
+		background-color:#a9c281;
 }
 #access ul ul :hover > a {
-	background: #5C1C00;
+	background: #a9c281;
 	color: #fff;
 }
 #access ul li:hover > ul {
@@ -203,53 +204,306 @@ div.menu li {
 	margin:0 auto;
 }
 
+#dwarf {
+	float:left;
+	width:86px;
+}
+#logo {
+	width:234px;
+	float:left;
+}
+#logo img {
+	width:234px;
+	height:96px;
+}
 
-/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+			/* Tablet Layout: 481px to 768px. Inherits styles from: Mobile Layout. */
+			
+			@media only screen and (min-width: 481px) {
+			
+			.gridContainer {
+				width: 90.675%;
+				padding-left: 1.1625%;
+				padding-right: 1.1625%;
+				clear: none;
+				float: none;
+				margin-left: auto;
+			}
+			#div1 {
+			}
+			.zeroMargin_tablet {
+				margin-left: 0;
+			}
+			.hide_tablet {
+				display: none;
+			}
+			
+			#dwarf {
+				float:left;
+				width:129px;
+			}
+			#logo {
+				width:351px;
+				float:left;
+			}
+			#logo img {
+				width:351px;
+				height:144px;
+			}
+			
+			#access {
+				width:300px;
+				height:41px;
+				top:96px; 
+				left:10px;
+				position:absolute;
+			}
+			
+			#access ul{
+				display:inline-block;
+			}
+			#access .menu-header,
+			div.menu {
+				font-size: 14px;
+			}
+			#access .menu-header ul,
+			div.menu ul {
+				list-style: none;
+				margin: 0 0 0 -40px;
+			}
+			#access .menu-header li,
+			div.menu li {
+				float: left;
+				position: relative;
+			}
+			#access a {
+				color:#404366;
+				display: block;
+				line-height: 41px;
+				padding: 0 7px;
+				text-decoration: none;
+				
+			}
+			#access ul ul {
+				display: none;
+				position: absolute;
+				top: 41px;
+				left: 0;
+				float: left;
+				width: 100px;
+				z-index: 99999;
+			}
+			#access ul ul li {
+				min-width: 100px;
+			}
+			#access ul ul ul {
+				left: 100%;
+				top: 0;
+			}
+			#access ul ul a {
+				background: #404366;
+				line-height: 1em;
+				padding: 10px;
+				width: 100px;
+				height: auto;
+				text-align:left;
+				font-size:15px;
+				color: #fff;
 
-@media only screen and (min-width: 481px) {
-
-.gridContainer {
-	width: 90.675%;
-	padding-left: 1.1625%;
-	padding-right: 1.1625%;
-	clear: none;
-	float: none;
-	margin-left: auto;
-}
-#div1 {
-}
-.zeroMargin_tablet {
-    margin-left: 0;
-}
-.hide_tablet {
-    display: none;
-}
-}
+			}
+			#access li:hover > a {
+					color: #fff;
+					background-color:#a9c281;
+			}
+			#access ul ul :hover > a {
+				background: #a9c281;
+				color: #fff;
+			}
+			#access ul li:hover > ul {
+				display: block;
+			}
+			#access ul li.current_page_item > a,
+			#access ul li.current-menu-ancestor > a,
+			#access ul li.current-menu-item > a,
+			#access ul li.current-menu-parent > a {
+				color: #fff;
+			}
+			* html #access ul li.current_page_item a,
+			* html #access ul li.current-menu-ancestor a,
+			* html #access ul li.current-menu-item a,
+			* html #access ul li.current-menu-parent a,
+			* html #access ul li a:hover {
+				color: #fff;
+			}
+						
+						
+			}
 
 /* Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
 
-@media only screen and (min-width: 769px) {
+						@media only screen and (min-width: 769px) {
+						
+						.gridContainer {
+							width: 88.5%;
+							max-width: 769px;
+							padding-left: 0.75%;
+							padding-right: 0.75%;
+							margin: auto;
+							clear: none;
+							float: none;
+							margin-left: auto;
+						}
+						#div1 {
+						}
+						.zeroMargin_desktop {
+							margin-left: 0;
+						}
+						.hide_desktop {
+							display: none;
+						}
+						
+						#dwarf {
+							float:left;
+							width:172px;
+						}
+						#logo {
+							width:468px;
+							float:left;
+						}
+						#logo img {
+							width:468px;
+							height:191px;
+						}
+						
+						#access {
+							width:400px;
+							height:56px;
+							top:127px; 
+							left:15px;
+							position:absolute;
+						}
+						
+						#access ul{
+							display:inline-block;
+						}
+						#access .menu-header,
+						div.menu {
+							font-size: 18px;
+						}
+						#access .menu-header ul,
+						div.menu ul {
+							list-style: none;
+							margin: 0 0 0 -40px;
+						}
+						#access .menu-header li,
+						div.menu li {
+							float: left;
+							position: relative;
+						}
+						#access a {
+							transition:color 1s;
+							color:#404366;
+							display: block;
+							line-height: 56px;
+							padding: 0 27px;
+							text-decoration: none;
+							
+						}
+						#access ul ul {
+							display: none;
+							position: absolute;
+							top: 56px;
+							left: 0;
+							float: left;
+							width: 100px;
+							z-index: 99999;
+						}
+						#access ul ul li {
+							min-width: 100px;
+						}
+						#access ul ul ul {
+							left: 100%;
+							top: 0;
+						}
+						#access ul ul a {
+							background: #404366;
+							line-height: 1em;
+							padding: 10px;
+							width: 100px;
+							height: auto;
+							text-align:left;
+							font-size:18px;
+							color: #fff;
 
-.gridContainer {
-	width: 88.5%;
-	max-width: 1232px;
-	padding-left: 0.75%;
-	padding-right: 0.75%;
-	margin: auto;
-	clear: none;
-	float: none;
-	margin-left: auto;
+						}
+						#access li:hover > a {
+							transition:color 1s, box-shadow 2s ease 1s;
+							box-shadow:4px 10px 10px 10px #079E04;
+								color: #fff;
+								background-color:#a9c281;
+								display:block;
+						}
+						#access ul ul :hover > a {
+							background: #a9c281;
+							color: #fff;
+						}
+						#access ul li:hover > ul {
+							display: block;
+						}
+						#access ul li.current_page_item > a,
+						#access ul li.current-menu-ancestor > a,
+						#access ul li.current-menu-item > a,
+						#access ul li.current-menu-parent > a {
+							color: #fff;
+						}
+						* html #access ul li.current_page_item a,
+						* html #access ul li.current-menu-ancestor a,
+						* html #access ul li.current-menu-item a,
+						* html #access ul li.current-menu-parent a,
+						* html #access ul li a:hover {
+							color: #fff;
+						}
+						
+						}
+/* END Desktop Layout: 769px to a max of 1232px.  Inherits styles from: Mobile Layout and Tablet Layout. */
+
+#dwarf a:hover {
+/* Chrome, Safari, Opera */
+
+position:relative;
+-webkit-animation:myfirst 0.5s linear 0s infinite alternate; /* Chrome, Safari, Opera */
+animation:myfirst 0.5s linear 0s infinite alternate;
 }
-#div1 {
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst
+{
+0%   {left:0px; top:0px;}
+25%  {left:1px; top:6px;}
+50%  {left:0px; top:13px;}
+75%  {left:0px; top:6px;}
+100% {left:0px; top:0px;}
 }
-.zeroMargin_desktop {
-    margin-left: 0;
+
+/* Standard syntax */
+@keyframes myfirst
+{
+0%   {left:0px; top:0px;}
+25%  {left:1px; top:6px;}
+50%  {left:0px; top:13px;}
+75%  {left:0px; top:6px;}
+100% {left:0px; top:0px;}
 }
-.hide_desktop {
-    display: none;
-}
+
+
+#logo {
+	position:relative;
 }
 
 
 
-
+.clear {
+	clear:both;
+	line-height:0;
+	height:0;
+}
