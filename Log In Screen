@@ -4,6 +4,58 @@
 <meta charset="utf-8"> 
 <title>Log In Page</title> 
 <script type="text/javascript"> 
+<script type='text/javascript'
+        src='https://cdn.firebase.com/js/simple-login/1.3.0/firebase-simple-login.js'>
+</script>
+
+var userLogin = new Firebase('https://foodforagingfiesta.firebaseio.com');
+var auth = new FirebaseSimpleLogin(userLogin, function(error, user) {
+  if (error) {
+    // an error occurred while attempting login
+    console.log(error);
+  } else if (user) {
+    // user authenticated with Firebase
+    console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+  } else {
+    // user is logged out
+  }
+});
+
+
+auth.createUser(email, password, function(error, user) {
+  if (!error) {
+    console.log('User Id: ' + user.id + ', Email: ' + user.email);
+  }
+});
+
+auth.login('password', {
+  email: '<email@domain.com>',
+  password: '<password>'
+});
+
+auth.login('password', {
+  email: '<email@domain.com>',
+  password: '<password>',
+  rememberMe: true
+});
+
+auth.changePassword(email, oldPassword, newPassword, function(error, success) {
+  if (!error) {
+    console.log('Password changed successfully');
+  }
+});
+
+auth.sendPasswordResetEmail(email, function(error, success) {
+  if (!error) {
+    console.log('Password reset email sent successfully');
+  }
+});
+
+auth.removeUser(email, password, function(error, success) {
+  if (!error) {
+    console.log('User deleted successfully');
+  }
+});
 function computeSize() {
 	var email = parseInt(document.getElementById("email").value);
 	var pWord1 = parseInt(document.getElementById("password1").value);
